@@ -1,0 +1,27 @@
+<div class="container" *ngIf="showSearch; else showDetail">
+  <div class="row justify-content-center align-items-center" style="height:70vh">
+    <div class="col-4">
+      <div class="card">
+        <img class="card-img-top" src="assets/star_wars.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title text-center" *ngIf="!pending">Search character</h5>
+          <mat-spinner [diameter]="20" style="margin:0 auto;" *ngIf="pending"></mat-spinner>
+          <form class="example-form">
+            <mat-form-field class="example-full-width" style="width:100%">
+              <input matInput aria-label="Character" [matAutocomplete]="auto" [formControl]="searchField">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="getCharacter($event)">
+                <mat-option *ngFor="let character of searchResults" [value]="character">
+                  <span>{{ character.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #showDetail>
+  <sm-detail [characterByInput]="character" (show)="changeSearch($event)"></sm-detail>
+</ng-template>

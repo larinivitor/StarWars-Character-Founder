@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row mb-5">
+    <div class="col-md-8 col-sm-12 p-2">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>{{ character.name }}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ 'Homeworld: ' + character.homeworld[0].name + ' ' + description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="back()">BACK</button>
+        </mat-card-actions>
+      </mat-card> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 p-2">
+      <mat-card class="example-card">
+        <mat-tab-group class="demo-tab-group">
+          <mat-tab label="Films">
+            <div class="demo-tab-content" *ngIf="character.films.length > 0">
+              <p *ngFor="let film of character.films">{{ 'Title: ' + film.title + ' Release date: ' + film.release_date }}</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Vehicles">
+            <div class="demo-tab-content" *ngIf="character.vehicles.length > 0">
+              <p *ngFor="let vehicle of character.vehicles">{{ 'Name: ' + vehicle.name + ' Model: ' + vehicle.model }}</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Species">
+            <div class="demo-tab-content" *ngIf="character.species.length > 0">
+              <p *ngFor="let specie of character.species">{{ 'Name: ' + specie.name + ' Classification: ' + specie.classification }}</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Starships">
+            <div class="demo-tab-content" *ngIf="character.starships.length > 0">
+              <p *ngFor="let starship of character.starships">{{ 'Name: ' + starship.name + ' Model: ' + starship.model }}</p>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+  </div>
+</div>
